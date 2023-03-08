@@ -25,13 +25,13 @@ const inter = Inter({ subsets: ["latin"] });
 */
 
 export default function Home() {
-  const [positionFind, setPositionFind] = useState<any>([]);
-  const [matrizPrint, setMatrizPrint] = useState<any>([]);
+  const [positionFind, setPositionFind] = useState<any>([]); // Declare,inicilizar,invocar = 3
+  const [matrizPrint, setMatrizPrint] = useState<any>([]); // Declare,inicilizar,invocar = 3
 
   // Imprimir la matriz
   const imprimirMatriz = () => {
     // matriz
-    const matriz: boolean[][] = [
+    const matriz: boolean[][] = [ // Declare,inicilizar = 2
       [false, false, true, false, false, false, false, false],
       [false, false, true, false, false, false, false, false],
       [false, false, true, true, true, false, false, false],
@@ -42,7 +42,7 @@ export default function Home() {
       [false, false, false, true, true, true, false, false],
     ];
     // call function searchCrossMatriz2
-    searchCrossMatriz2(matriz, 0, 0);
+    searchCrossMatriz2(matriz, 0, 0); // invocar = 1
   };
 
   // function searchCrossMatriz2
@@ -52,12 +52,12 @@ export default function Home() {
     columna: number
   ) => {
     // get true positions cross positions and index in array of objects with position and cross positions
-    const truePosicionesSearchCross: any = [];
+    const truePosicionesSearchCross: any = []; // Declare,inicilizar = 2
     // Search for adjacent "true" positions
-    matriz.forEach((fila, filaIndex) => {
-      fila.forEach((value, columnaIndex) => {
-        if (value) {
-          const searchCross = [
+    matriz.forEach((fila, filaIndex) => { // asignacion,inicilizar,invocar = 3
+      fila.forEach((value, columnaIndex) => { // asignacion,inicilizar,invocar = 3
+        if (value) { // invocar = 1
+          const searchCross = [ // Declare,inicilizar = 2
             { fila: filaIndex - 1, columna: columnaIndex },
             { fila: filaIndex + 1, columna: columnaIndex },
             { fila: filaIndex, columna: columnaIndex - 1 },
@@ -65,45 +65,44 @@ export default function Home() {
           ];
 
           // Add current position to the list of positions to be searched
-          let positionsToSearch = [{ fila: filaIndex, columna: columnaIndex }];
+          let positionsToSearch = [{ fila: filaIndex, columna: columnaIndex }]; // Declare,inicilizar = 2
 
           // Keep searching for adjacent "true" positions until no more are found
-          while (positionsToSearch.length > 0) {
+          while (positionsToSearch.length > 0) { //  asignacion,aritmetica = 2
             // Get the next position to search
-            const currentPosition = positionsToSearch.shift()!;
+            const currentPosition = positionsToSearch.shift()!; // asignacion,declaracion,invocacion = 3
 
             // Check if the position has already been found
-            const positionFound = truePosicionesSearchCross.some(
+            const positionFound = truePosicionesSearchCross.some( // declaracion,asignacion,invoacion = 3
               (posicion: any) =>
-                posicion.fila === currentPosition.fila &&
-                posicion.columna === currentPosition.columna
+                posicion.fila === currentPosition.fila &&  // invocacion,aritmetica = 3
+                posicion.columna === currentPosition.columna // invocacion,aritmetica = 2
             );
 
             if (!positionFound) {
               // Add the position to the list of found positions
-              truePosicionesSearchCross.push({
-                fila: currentPosition.fila,
+              truePosicionesSearchCross.push({ // asignacion,invocacion = 2
+                fila: currentPosition.fila, 
                 columna: currentPosition.columna,
                 searchCross,
                 index: truePosicionesSearchCross.length,
               });
 
               // Add adjacent positions to the list of positions to search
-              searchCross.forEach((posicion) => {
-                const nextPosition = {
-                  fila: currentPosition.fila + posicion.fila - filaIndex,
-                  columna:
-                    currentPosition.columna + posicion.columna - columnaIndex,
+              searchCross.forEach((posicion) => { // asignacion,inicilizar,invocar = 3
+                const nextPosition = { // declaracion,inicilizar = 2
+                  fila: currentPosition.fila + posicion.fila - filaIndex,  // invocacion,aritmetica = 3
+                  columna: currentPosition.columna + posicion.columna - columnaIndex, // invocacion,aritmetica = 3
                 };
 
                 if (
-                  nextPosition.fila >= 0 &&
-                  nextPosition.fila < matriz.length &&
-                  nextPosition.columna >= 0 &&
-                  nextPosition.columna < matriz[0].length &&
-                  matriz[nextPosition.fila][nextPosition.columna]
+                  nextPosition.fila >= 0 && // invocacion,aritmetica = 3
+                  nextPosition.fila < matriz.length && // invocacion,aritmetica = 3
+                  nextPosition.columna >= 0 && // invocacion,aritmetica = 3
+                  nextPosition.columna < matriz[0].length && // invocacion,aritmetica = 3
+                  matriz[nextPosition.fila][nextPosition.columna] // invocacion,aritmetica = 3
                 ) {
-                  positionsToSearch.push(nextPosition);
+                  positionsToSearch.push(nextPosition); // asignacion,invocacion = 2
                 }
               });
             }
@@ -113,8 +112,8 @@ export default function Home() {
     });
 
     // plot matrix with true positions and true  = 1 and false = 0
-    const matrizPlot = matriz.map((fila) => {
-      return fila.map((value) => {
+    const matrizPlot = matriz.map((fila) => { 
+      return fila.map((value) => { //asignacion,inicilizar,invocar = 5
         if (value) {
           return 1;
         } else {
@@ -124,12 +123,12 @@ export default function Home() {
     });
 
     // order array of objects with position and cross positions
-    let orderPosition = truePosicionesSearchCross;
-    setPositionFind(orderPosition);
-    setMatrizPrint(matrizPlot);
-    console.log("matriz:", matriz);
-    console.log("truePosiciones:", orderPosition);
-    console.log("matrizPlot:", matrizPlot);
+    let orderPosition = truePosicionesSearchCross; // asignacion,declaracion = 2
+    setPositionFind(orderPosition); // asignacion,invocacion = 2
+    setMatrizPrint(matrizPlot); // asignacion,invocacion = 2
+    console.log("matriz:", matriz); // invocacion = 1
+    console.log("truePosiciones:", orderPosition); // invocacion = 1
+    console.log("matrizPlot:", matrizPlot); // invocacion = 1
   };
 
   return (
