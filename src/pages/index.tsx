@@ -23,7 +23,7 @@ const inter = Inter({ subsets: ["latin"] });
   (i,j) que representan el camino desde la posicion inicial hasta la posicion
   final. 
 */
-
+//Total operaciones elementales  = 100
 export default function Home() {
   const [positionFind, setPositionFind] = useState<any>([]); // Declare,inicilizar,invocar = 3
   const [matrizPrint, setMatrizPrint] = useState<any>([]); // Declare,inicilizar,invocar = 3
@@ -46,7 +46,7 @@ export default function Home() {
   };
 
   // function searchCrossMatriz2
-  const searchCrossMatriz2 = (
+  const searchCrossMatriz2 = ( // declaracion = 1
     matriz: boolean[][],
     fila: number,
     columna: number
@@ -56,43 +56,43 @@ export default function Home() {
     // Search for adjacent "true" positions
     matriz.forEach((fila, filaIndex) => { // asignacion,inicilizar,invocar = 3
       fila.forEach((value, columnaIndex) => { // asignacion,inicilizar,invocar = 3
-        if (value) { // invocar = 1
+        if (value) { // asignar = 1
           const searchCross = [ // Declare,inicilizar = 2
-            { fila: filaIndex - 1, columna: columnaIndex },
-            { fila: filaIndex + 1, columna: columnaIndex },
-            { fila: filaIndex, columna: columnaIndex - 1 },
-            { fila: filaIndex, columna: columnaIndex + 1 },
+            { fila: filaIndex - 1, columna: columnaIndex }, // asiggnacion,aritmetica = 2
+            { fila: filaIndex + 1, columna: columnaIndex }, // asiggnacion,aritmetica = 2
+            { fila: filaIndex, columna: columnaIndex - 1 }, // asiggnacion,aritmetica = 2
+            { fila: filaIndex, columna: columnaIndex + 1 }, // asiggnacion,aritmetica = 2
           ];
 
           // Add current position to the list of positions to be searched
-          let positionsToSearch = [{ fila: filaIndex, columna: columnaIndex }]; // Declare,inicilizar = 2
+          let positionsToSearch = [{ fila: filaIndex, columna: columnaIndex }]; // Declare,inicilizar,asignar = 3
 
           // Keep searching for adjacent "true" positions until no more are found
           while (positionsToSearch.length > 0) { //  asignacion,aritmetica = 2
             // Get the next position to search
-            const currentPosition = positionsToSearch.shift()!; // asignacion,declaracion,invocacion = 3
+            const currentPosition = positionsToSearch.shift()!; // asignacion,declaracion,invocacion,aritmetica = 4
 
             // Check if the position has already been found
             const positionFound = truePosicionesSearchCross.some( // declaracion,asignacion,invoacion = 3
-              (posicion: any) =>
+              (posicion: any) => // asignacion = 1
                 posicion.fila === currentPosition.fila &&  // invocacion,aritmetica = 3
                 posicion.columna === currentPosition.columna // invocacion,aritmetica = 2
             );
 
-            if (!positionFound) {
+            if (!positionFound) { //asignacion,aritmetica = 2
               // Add the position to the list of found positions
               truePosicionesSearchCross.push({ // asignacion,invocacion = 2
-                fila: currentPosition.fila, 
-                columna: currentPosition.columna,
-                searchCross,
-                index: truePosicionesSearchCross.length,
+                fila: currentPosition.fila, // invocacion,asignacion,declare = 3
+                columna: currentPosition.columna, // invocacion,asignacion,declare = 3
+                searchCross, //asignacion = 1
+                index: truePosicionesSearchCross.length, // invocacion,asignacion,declare = 3
               });
 
               // Add adjacent positions to the list of positions to search
               searchCross.forEach((posicion) => { // asignacion,inicilizar,invocar = 3
                 const nextPosition = { // declaracion,inicilizar = 2
-                  fila: currentPosition.fila + posicion.fila - filaIndex,  // invocacion,aritmetica = 3
-                  columna: currentPosition.columna + posicion.columna - columnaIndex, // invocacion,aritmetica = 3
+                  fila: currentPosition.fila + posicion.fila - filaIndex,  // invocacion,aritmetica,asignacion = 4
+                  columna: currentPosition.columna + posicion.columna - columnaIndex, // invocacion,aritmetica = 4
                 };
 
                 if (
